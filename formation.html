@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 01 : Trouver sa niche et son audience — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Interface de cours de la formation YouTube Business 360° avec barre latérale, progression dynamique et encadrés pédagogiques Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Styles spécifiques à la page de formation (Sidebar + Contenu) */
+    .formation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - var(--header-height));
+      padding-top: var(--header-height);
+    }
+
+    .formation-sidebar {
+      background: var(--bg-surface-1);
+      border-right: 1px solid var(--border-subtle);
+      padding: 30px 20px;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .formation-main {
+      padding: 50px 60px;
+      max-width: 960px;
+    }
+
+    .module-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .module-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .module-nav-item.active {
+      background: var(--bg-surface-2);
+      border-color: var(--border-glow-red);
+      color: #FFFFFF;
+    }
+
+    .module-nav-status {
+      font-size: 0.82rem;
+    }
+
+    .progress-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--yt-red), var(--accent-gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-complete-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      background: var(--yt-red-subtle);
+      border: 1px solid rgba(255, 0, 51, 0.4);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      margin-top: 40px;
+    }
+
+    .lesson-complete-btn:hover {
+      background: var(--yt-red);
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+    }
+
+    .lesson-complete-btn.completed {
+      background: var(--accent-green-subtle);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .formation-layout {
+        grid-template-columns: 1fr;
+      }
+      .formation-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .formation-main {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Espace de Cours</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link active">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Mon Dashboard</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORMATION LAYOUT : SIDEBAR + CONTENU -->
+  <div class="formation-layout">
+    <!-- SIDEBAR -->
+    <aside class="formation-sidebar">
+      <div class="progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <span style="color: var(--text-muted);">PROGRESSION</span>
+          <span class="progress-value-text" style="color: var(--yt-red);">42 %</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">
+          Parcours des Modules
+        </div>
+        <a href="formation.html" class="module-nav-item active">
+          <span>Module 01 : Trouver sa niche</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-02.html" class="module-nav-item">
+          <span>Module 02 : Psychologie du Clic</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-03.html" class="module-nav-item">
+          <span>Module 03 : Analyser la concurrence</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-04.html" class="module-nav-item">
+          <span>Module 04 : Créer sa chaîne pro</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-05.html" class="module-nav-item">
+          <span>Module 05 : Stratégie de contenu</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-06.html" class="module-nav-item">
+          <span>Module 06 : Écrire un script</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-07.html" class="module-nav-item">
+          <span>Module 07 : Miniatures qui cliquent</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-08.html" class="module-nav-item">
+          <span>Module 08 : Tournage & montage</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-09.html" class="module-nav-item">
+          <span>Module 09 : SEO YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-10.html" class="module-nav-item">
+          <span>Module 10 : Calendrier & régularité</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-11.html" class="module-nav-item">
+          <span>Module 11 : Analytics</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-12.html" class="module-nav-item">
+          <span>Module 12 : Monétisation (9 modèles)</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-13.html" class="module-nav-item">
+          <span>Module 13 : YouTube depuis l'Afrique</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-14.html" class="module-nav-item">
+          <span>Module 14 : Cas pratiques approfondis</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-15.html" class="module-nav-item">
+          <span>Module 15 : Plan d'action 7/30/60/90j</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-16.html" class="module-nav-item">
+          <span>Module 16 : IA & YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-17.html" class="module-nav-item">
+          <span>Module 17 : Glossaire A-Z</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-18.html" class="module-nav-item">
+          <span>Module 18 : Boîte à outils bonus</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-19.html" class="module-nav-item">
+          <span>Module 19 : Construire son système</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-20.html" class="module-nav-item">
+          <span>Module 20 : Marque personnelle</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-21.html" class="module-nav-item">
+          <span>Module 21 : Communauté engagée</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-22.html" class="module-nav-item">
+          <span>Module 22 : Offre digitale rentable</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-23.html" class="module-nav-item">
+          <span>Module 23 : Tunnel de conversion</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-24.html" class="module-nav-item">
+          <span>Module 24 : Optimiser le business</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-25.html" class="module-nav-item">
+          <span>Module 25 : Vision long terme</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <a href="exercice.html" class="btn btn-secondary btn-sm" style="width: 100%;">Accéder aux exercices</a>
+      </div>
+    </aside>
+
+    <!-- CONTENU PÉDAGOGIQUE -->
+    <main class="formation-main">
+      <div class="badge badge-red" style="margin-bottom: 16px;">MODULE 01 • LEÇON 01</div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; margin-bottom: 20px;">
+        Trouver sa niche et son audience
+      </h1>
+
+      <!-- OBJECTIF -->
+      <div class="callout-box callout-action">
+        <div class="callout-header">🎯 OBJECTIF PÉDAGOGIQUE</div>
+        <div class="callout-content">
+          À la fin de cette leçon, vous saurez identifier une niche précise à la rencontre de trois éléments : ce que vous savez faire, ce que les gens recherchent réellement, et ce qui peut être monétisé — puis en déduire votre avatar et votre positionnement.
+        </div>
+      </div>
+
+      <!-- CORPS DU COURS -->
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; margin: 36px 0;">
+        <p style="margin-bottom: 20px;">
+          Une niche n'est pas simplement un sujet. C'est un public précis à qui tu t'adresses. L'objectif n'est donc pas seulement de trouver un sujet qui te plaît : il faut trouver une audience qui a un besoin et à laquelle tu peux apporter une vraie valeur.
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.1 — Niche vs sous-niche</h3>
+        <p style="margin-bottom: 14px;">Une niche trop large rend difficile la différenciation :</p>
+        <ul style="margin: 0 0 20px 22px; color: var(--text-secondary);">
+          <li>Cuisine → trop large</li>
+          <li>Fitness → trop large</li>
+          <li>Entrepreneuriat → trop large</li>
+          <li>Technologie → trop large</li>
+        </ul>
+        <p style="margin-bottom: 10px;">Il faut aller plus loin :</p>
+        <ul style="margin: 0 0 20px 22px; color: var(--text-secondary);">
+          <li>Cuisine → recettes rapides pour étudiants</li>
+          <li>Fitness → entraînement à domicile pour débutants</li>
+          <li>Entrepreneuriat → création de business en ligne pour débutants</li>
+          <li>Technologie → astuces smartphone pour utilisateurs débutants</li>
+        </ul>
+        <p style="margin-bottom: 20px;">Plus ton audience est précise, plus il devient facile de créer des contenus qui lui parlent directement.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.2 — Les 3 critères d'une bonne niche</h3>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">1. Ce que tu peux produire</strong> — Qu'est-ce que je sais faire ? Qu'est-ce que j'aime ? Sur quel sujet puis-je créer régulièrement ? Ai-je suffisamment de connaissances ou d'expérience ?</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">2. Ce que les gens recherchent</strong> — Est-ce que les gens recherchent ce sujet ? Quels problèmes rencontrent-ils ? Quelles questions posent-ils ? Quelles vidéos regardent-ils déjà ?</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">3. Ce qui peut être monétisé</strong> — publicité YouTube, affiliation, sponsoring, services, coaching, formation, ebook, produits, génération de prospects. Une bonne niche doit avoir un public et un potentiel économique.</p>
+
+        <!-- ÉVALUER SA NICHE -->
+        <div class="callout-box callout-tip">
+          <div class="callout-header">📊 2.3 — ÉVALUER SA NICHE</div>
+          <div class="callout-content">
+            Note ta niche sur 10 pour chaque critère : Demande, Concurrence, Potentiel de revenus, Expertise personnelle, Facilité de production, Potentiel international (TOTAL /60). Une niche qui obtient plus de 35/60 peut être intéressante pour démarrer — ce score ne garantit pas le succès, il sert simplement à prendre une décision plus réfléchie.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.4 — Définir son avatar</h3>
+        <p style="margin-bottom: 14px;">Ton avatar est ton spectateur idéal. Il ne faut pas dire « je m'adresse à tout le monde. » Il faut être précis : âge, situation, pays ou région, niveau de connaissance, principal problème, principale frustration, ce qu'il a déjà essayé, ce qu'il recherche, résultat qu'il souhaite obtenir.</p>
+        <p style="margin-bottom: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--border-subtle); border-radius: var(--radius-sm); font-style: italic; color: var(--text-secondary);">
+          Exemple : « Mon spectateur idéal est un débutant qui veut créer une chaîne YouTube mais ne sait pas par où commencer. Son problème principal est le manque de connaissances. Il a déjà regardé plusieurs vidéos mais reste perdu. Il recherche une méthode simple et étape par étape. »
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.5 — Trouver le problème de son audience</h3>
+        <p style="margin-bottom: 10px;">Une audience regarde du contenu parce qu'elle veut généralement : apprendre quelque chose, résoudre un problème, gagner du temps, éviter une erreur, obtenir un résultat, se divertir, découvrir quelque chose de nouveau.</p>
+        <p style="margin-bottom: 20px;">Complète : <em>« Mon audience veut __________ mais elle n'arrive pas à __________. »</em></p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.6 — Trouver le résultat recherché</h3>
+        <p style="margin-bottom: 20px;">Problème : « Je ne sais pas créer une chaîne YouTube. » → Résultat recherché : « Je veux lancer ma chaîne correctement. » Ton contenu doit aider ton audience à passer du problème au résultat.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.7 — Trouver son positionnement</h3>
+        <p style="margin-bottom: 14px;">Le positionnement répond à une question simple : « Pourquoi regarder ma chaîne plutôt qu'une autre ? »</p>
+        <p style="margin-bottom: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-gold); border-radius: var(--radius-sm);">
+          Formule : <strong style="color:#fff;">Ma chaîne aide [MON AUDIENCE] à [RÉSULTAT] grâce à [MON ANGLE OU MA MÉTHODE].</strong><br>
+          Exemple : « Ma chaîne aide les débutants à créer leur première chaîne YouTube grâce à une méthode simple et étape par étape. »
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.8 — Vérifier si ta niche peut durer</h3>
+        <p style="margin-bottom: 20px;">Imagine que tu dois publier 2 vidéos par semaine pendant 1 an — plus de 100 vidéos. Si tu peux facilement trouver beaucoup d'idées, c'est un bon signe. Si tu n'arrives pas à trouver suffisamment de sujets, ta niche est peut-être trop limitée.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2.9 — Penser à la monétisation dès le départ</h3>
+        <p style="margin-bottom: 20px;">Ne choisis pas une niche uniquement parce qu'elle peut obtenir beaucoup de vues. Le chemin naturel : audience → contenu gratuit → confiance → offre (formation, ebook, service, affiliation, produit, sponsoring, communauté).</p>
+
+        <!-- ERREURS À ÉVITER -->
+        <div class="callout-box callout-danger">
+          <div class="callout-header">⚠️ 2.10 — ERREURS À ÉVITER</div>
+          <div class="callout-content">
+            <strong>1.</strong> Choisir une niche uniquement parce qu'elle rapporte.<br>
+            <strong>2.</strong> Vouloir parler à tout le monde.<br>
+            <strong>3.</strong> Ne pas vérifier si une demande existe.<br>
+            <strong>4.</strong> Copier exactement un autre créateur.<br>
+            <strong>5.</strong> Choisir une niche sur laquelle tu ne peux pas produire régulièrement.<br>
+            <strong>6.</strong> Changer constamment de niche sans laisser le temps à la chaîne de se développer.
+          </div>
+        </div>
+
+        <!-- À RETENIR -->
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 À RETENIR</div>
+          <div class="callout-content">
+            Une bonne niche réunit : ce que tu peux produire + ce que les gens recherchent + ce qui peut être monétisé. Ne cherche pas seulement des vues — cherche à construire une audience précise, utile et durable.
+          </div>
+        </div>
+
+        <!-- CHECKLIST DE LA LEÇON -->
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; margin: 30px 0;">
+          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 16px;">☑️ CHECKLIST DE LA LEÇON</div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--text-secondary);">
+            <li>☐ J'ai choisi une niche précise.</li>
+            <li>☐ J'ai identifié une audience.</li>
+            <li>☐ Je connais son principal problème.</li>
+            <li>☐ Je connais le résultat qu'elle recherche.</li>
+            <li>☐ J'ai évalué le potentiel de ma niche.</li>
+            <li>☐ J'ai défini mon positionnement.</li>
+            <li>☐ Je connais plusieurs possibilités de monétisation.</li>
+            <li>☐ Je peux trouver suffisamment de sujets pour publier régulièrement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXERCICE LINK -->
+      <div class="prompt-teaser-card" style="margin: 40px 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px;">Exercice Pratique Associé</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Complète tes 5 idées de niches, ton avatar et ton positionnement dans l'exercice dédié pour débloquer le corrigé de Gaston N3.</p>
+        <a href="exercice.html" class="btn btn-secondary btn-sm">Ouvrir l'exercice →</a>
+      </div>
+
+      <!-- BOUTON TERMINÉ -->
+      <button class="lesson-complete-btn" id="btn-toggle-complete" onclick="CourseEngine.toggleLesson('mod-01-lec-01', this)">
+        <span>✓ Marquer la leçon comme terminée (+25 XP)</span>
+      </button>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/course.js"></script>
+</body>
+</html>

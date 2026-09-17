@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulateur Analytics & Cas Pratiques — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Atelier d'audit algorithmique interactif : analysez vos impressions, votre CTR, votre rétention et résolvez des cas réels déconstruits par Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .case-card {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      margin-bottom: 36px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Simulateur Analytics</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="analytics.html" class="nav-link active">Analytics</a>
+        <a href="glossaire.html" class="nav-link">Glossaire</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="formation.html" class="btn btn-primary btn-sm">Reprendre le cours</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: calc(var(--header-height) + 40px);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">DIAGNOSTIC ALGORITHMIQUE</div>
+        <h1 class="section-title">Cas Pratique & <span class="highlight-red">Simulateur Analytics</span></h1>
+        <p class="section-desc">Entraînez votre œil de stratège : interprétez les métriques de bord YouTube pour identifier immédiatement le point de friction d'une chaîne.</p>
+      </div>
+
+      <!-- CAS PRATIQUE 01 -->
+      <div class="case-card reveal">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <span class="badge badge-red">CAS PRATIQUE #01</span>
+            <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-top: 6px;">Le Syndrome de l'Exposition sans Clic</h2>
+          </div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">CAS FICTIF / SIMULATION PÉDAGOGIQUE</span>
+        </div>
+
+        <div class="kpi-row">
+          <div class="metric-box">
+            <div class="metric-title">Impressions</div>
+            <div class="metric-val" style="color: var(--accent-cyan);">120 000</div>
+            <div style="font-size: 0.75rem; color: var(--accent-green); margin-top: 4px;">Algorithme très actif</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-title">Taux de clic (CTR)</div>
+            <div class="metric-val" style="color: var(--yt-red);">2.1 %</div>
+            <div style="font-size: 0.75rem; color: var(--yt-red); margin-top: 4px;">Critique (seuil minimal 5%)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-title">Durée moy. de visionnage</div>
+            <div class="metric-val" style="color: var(--accent-green);">68 %</div>
+            <div style="font-size: 0.75rem; color: var(--accent-green); margin-top: 4px;">Excellente satisfaction</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-title">Durée de vidéo</div>
+            <div class="metric-val">12m 40s</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Format long optimisé</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 12px; color: #FFFFFF;">
+            Question d'analyse Gaston N3 : Que devez-vous modifier en priorité absolue ?
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 12px;" id="quiz-options">
+            <button class="btn btn-secondary" style="justify-content: flex-start; text-align: left;" onclick="handleQuizAnswer(this, false, 'Non. 68% de rétention sur 12 minutes est exceptionnel, le contenu de la vidéo ravit déjà les spectateurs !')">
+              A. Couper le milieu de la vidéo pour améliorer le rythme
+            </button>
+            <button class="btn btn-secondary" style="justify-content: flex-start; text-align: left;" onclick="handleQuizAnswer(this, true, 'EXCELLENT ! Vos 120 000 impressions prouvent que l\'algorithme teste la vidéo, mais les gens ne cliquent pas (CTR 2.1%). Changer le titre et la miniature va immédiatement débloquer des milliers de vues !')">
+              B. Changer immédiatement la miniature et tester une variante de titre
+            </button>
+            <button class="btn btn-secondary" style="justify-content: flex-start; text-align: left;" onclick="handleQuizAnswer(this, false, 'Non. Supprimer et reposter est une erreur classique qui pénalise l\'historique d\'engagement.')">
+              C. Supprimer la vidéo et la reposter à un meilleur horaire
+            </button>
+          </div>
+
+          <div id="quiz-feedback" style="display: none; margin-top: 20px; padding: 18px; border-radius: var(--radius-sm); font-size: 0.95rem; line-height: 1.6;"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 YouTube Business 360° — Gaston N3. Tous droits réservés.</div>
+      <div>CAS FICTIF / SIMULATION PÉDAGOGIQUE</div>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script>
+    function handleQuizAnswer(btn, isCorrect, explanation) {
+      const feedback = document.getElementById('quiz-feedback');
+      const allBtns = document.querySelectorAll('#quiz-options .btn');
+      allBtns.forEach(b => {
+        b.style.pointerEvents = 'none';
+        b.style.opacity = '0.6';
+      });
+
+      btn.style.opacity = '1';
+      feedback.style.display = 'block';
+
+      if (isCorrect) {
+        btn.style.borderColor = 'var(--accent-green)';
+        btn.style.background = 'var(--accent-green-subtle)';
+        feedback.style.background = 'rgba(16, 185, 129, 0.1)';
+        feedback.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+        feedback.style.color = '#D1FAE5';
+        feedback.innerHTML = `<strong>✓ BONNE RÉPONSE (+30 XP) :</strong> ${explanation}`;
+        AppStorage.addXP(30, 'Cas pratique Analytics résolu');
+      } else {
+        btn.style.borderColor = 'var(--yt-red)';
+        btn.style.background = 'var(--yt-red-subtle)';
+        feedback.style.background = 'rgba(255, 0, 51, 0.1)';
+        feedback.style.border = '1px solid rgba(255, 0, 51, 0.3)';
+        feedback.style.color = '#FFE4E6';
+        feedback.innerHTML = `<strong>✗ ERREUR D'ANALYSE :</strong> ${explanation}`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercice Interactif : Trouver sa Niche — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Exercice pratique interactif avec sauvegarde locale, corrigé animé et conseils exclusifs de Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .exercise-form-card {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #FFFFFF;
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--yt-red);
+      box-shadow: 0 0 15px rgba(255, 0, 51, 0.25);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .solution-box {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      background: var(--bg-surface-1);
+      border: 1px solid rgba(255, 184, 0, 0.4);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 30px;
+    }
+
+    .solution-box.solution-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Atelier Pratique</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="formation.html" class="btn btn-secondary btn-sm">Retour au cours</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: calc(var(--header-height) + 40px);">
+    <div class="container" style="max-width: 860px;">
+      <div style="margin-bottom: 30px;">
+        <span class="badge badge-red" style="margin-bottom: 12px;">EXERCICE D'APPLICATION #01</span>
+        <h1 class="section-title">Valider sa Niche & sa Proposition de Valeur</h1>
+        <p class="section-desc">Remplissez consciencieusement ce formulaire. Vos réponses sont automatiquement sauvegardées sur votre navigateur pour votre suivi personnel.</p>
+      </div>
+
+      <!-- FORMULAIRE INTERACTIF -->
+      <div class="exercise-form-card">
+        <form id="exercise-niche-form" onsubmit="event.preventDefault(); ExerciseEngine.saveExercise('ex-niche', this);">
+          <div class="form-group">
+            <label class="form-label" for="niche_name">Ma niche précise :</label>
+            <input type="text" id="niche_name" name="niche_name" class="form-input" placeholder="Ex: Automatisation Notion & IA pour freelances..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="audience_target">Mon audience cible (Avatar) :</label>
+            <input type="text" id="audience_target" name="audience_target" class="form-input" placeholder="Ex: Consultants indépendants 30-45 ans débordés..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pain_point">Le problème douloureux & urgent à résoudre :</label>
+            <textarea id="pain_point" name="pain_point" class="form-textarea" rows="3" placeholder="Ex: Ils perdent 15 heures par semaine en gestion administrative..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promise_value">Ma promesse transformatrice (The Big Idea) :</label>
+            <textarea id="promise_value" name="promise_value" class="form-textarea" rows="3" placeholder="Ex: Automatiser 80% de leurs opérations sans coder en moins de 14 jours..." required></textarea>
+          </div>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px;">
+            <button type="submit" class="btn btn-primary">
+              <span>💾 Sauvegarder l'exercice (+20 XP)</span>
+            </button>
+            <button type="button" id="btn-solution-ex-niche" class="btn btn-secondary" onclick="ExerciseEngine.revealSolution('solution-ex-niche')">
+              <span>💡 Débloquer le corrigé de Gaston N3</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- CORRIGÉ ET DÉCONSTRUCTION PÉDAGOGIQUE -->
+      <div id="solution-ex-niche" class="solution-box">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+          <span style="font-size: 1.8rem;">💡</span>
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--accent-gold);">Corrigé Type & Grille d'Évaluation</h2>
+            <span style="font-size: 0.84rem; color: var(--text-muted);">SIMULATION PÉDAGOGIQUE GASTON N3</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <h4 style="color: #FFFFFF; margin-bottom: 8px;">1. Exemple de réponse optimale :</h4>
+          <div style="background: rgba(255, 255, 255, 0.04); padding: 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-green); font-size: 0.95rem;">
+            « Aider les développeurs juniors à réussir leurs entretiens techniques FAANG sans passer 6 mois sur LeetCode grâce à une méthode d'analyse des patterns algorithmiques. »
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <h4 style="color: #FFFFFF; margin-bottom: 8px;">2. Pourquoi cette réponse fonctionne :</h4>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">
+            L'avatar est précis, la promesse a une valeur financière directe (décrocher un salaire à 6 chiffres), et la méthode propose un mécanisme unique (« patterns » plutôt que « bachotage »).
+          </p>
+        </div>
+
+        <div class="callout-box callout-danger" style="margin-bottom: 0;">
+          <div class="callout-header">⚠️ ERREURS FRÉQUENTES RELEVÉES PAR GASTON N3</div>
+          <div class="callout-content">
+            1. Cibler "Tout le monde intéressé par l'informatique".<br>
+            2. Proposer une promesse vague ("Être meilleur en maths") sans bénéfice concret mesurable.<br>
+            3. Choisir une thématique où les spectateurs n'ont pas de carte bancaire.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 YouTube Business 360° — Gaston N3. Tous droits réservés.</div>
+      <div>CAS FICTIF / SIMULATION PÉDAGOGIQUE</div>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/exercises.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ExerciseEngine.loadExercise('ex-niche', document.getElementById('exercise-niche-form'));
+    });
+  </script>
+</body>
+</html>

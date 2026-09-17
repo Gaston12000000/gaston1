@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 02 : Psychologie du Clic — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Interface de cours de la formation YouTube Business 360° avec barre latérale, progression dynamique et encadrés pédagogiques Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Styles spécifiques à la page de formation (Sidebar + Contenu) */
+    .formation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - var(--header-height));
+      padding-top: var(--header-height);
+    }
+
+    .formation-sidebar {
+      background: var(--bg-surface-1);
+      border-right: 1px solid var(--border-subtle);
+      padding: 30px 20px;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .formation-main {
+      padding: 50px 60px;
+      max-width: 960px;
+    }
+
+    .module-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .module-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .module-nav-item.active {
+      background: var(--bg-surface-2);
+      border-color: var(--border-glow-red);
+      color: #FFFFFF;
+    }
+
+    .module-nav-status {
+      font-size: 0.82rem;
+    }
+
+    .progress-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--yt-red), var(--accent-gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-complete-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      background: var(--yt-red-subtle);
+      border: 1px solid rgba(255, 0, 51, 0.4);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      margin-top: 40px;
+    }
+
+    .lesson-complete-btn:hover {
+      background: var(--yt-red);
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+    }
+
+    .lesson-complete-btn.completed {
+      background: var(--accent-green-subtle);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .formation-layout {
+        grid-template-columns: 1fr;
+      }
+      .formation-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .formation-main {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Espace de Cours</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link active">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Mon Dashboard</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORMATION LAYOUT : SIDEBAR + CONTENU -->
+  <div class="formation-layout">
+    <!-- SIDEBAR -->
+    <aside class="formation-sidebar">
+      <div class="progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <span style="color: var(--text-muted);">PROGRESSION</span>
+          <span class="progress-value-text" style="color: var(--yt-red);">42 %</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">
+          Parcours des Modules
+        </div>
+        <a href="formation.html" class="module-nav-item">
+          <span>Module 01 : Trouver sa niche</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-02.html" class="module-nav-item active">
+          <span>Module 02 : Psychologie du Clic</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-03.html" class="module-nav-item">
+          <span>Module 03 : Analyser la concurrence</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-04.html" class="module-nav-item">
+          <span>Module 04 : Créer sa chaîne pro</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-05.html" class="module-nav-item">
+          <span>Module 05 : Stratégie de contenu</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-06.html" class="module-nav-item">
+          <span>Module 06 : Écrire un script</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-07.html" class="module-nav-item">
+          <span>Module 07 : Miniatures qui cliquent</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-08.html" class="module-nav-item">
+          <span>Module 08 : Tournage & montage</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-09.html" class="module-nav-item">
+          <span>Module 09 : SEO YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-10.html" class="module-nav-item">
+          <span>Module 10 : Calendrier & régularité</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-11.html" class="module-nav-item">
+          <span>Module 11 : Analytics</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-12.html" class="module-nav-item">
+          <span>Module 12 : Monétisation (9 modèles)</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-13.html" class="module-nav-item">
+          <span>Module 13 : YouTube depuis l'Afrique</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-14.html" class="module-nav-item">
+          <span>Module 14 : Cas pratiques approfondis</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-15.html" class="module-nav-item">
+          <span>Module 15 : Plan d'action 7/30/60/90j</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-16.html" class="module-nav-item">
+          <span>Module 16 : IA & YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-17.html" class="module-nav-item">
+          <span>Module 17 : Glossaire A-Z</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-18.html" class="module-nav-item">
+          <span>Module 18 : Boîte à outils bonus</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-19.html" class="module-nav-item">
+          <span>Module 19 : Construire son système</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-20.html" class="module-nav-item">
+          <span>Module 20 : Marque personnelle</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-21.html" class="module-nav-item">
+          <span>Module 21 : Communauté engagée</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-22.html" class="module-nav-item">
+          <span>Module 22 : Offre digitale rentable</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-23.html" class="module-nav-item">
+          <span>Module 23 : Tunnel de conversion</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-24.html" class="module-nav-item">
+          <span>Module 24 : Optimiser le business</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-25.html" class="module-nav-item">
+          <span>Module 25 : Vision long terme</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <a href="exercice.html" class="btn btn-secondary btn-sm" style="width: 100%;">Accéder aux exercices</a>
+      </div>
+    </aside>
+
+    <!-- CONTENU PÉDAGOGIQUE -->
+    <main class="formation-main">
+      <div class="badge badge-red" style="margin-bottom: 16px;">MODULE 02 • LEÇON 01</div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; margin-bottom: 20px;">
+        Psychologie du clic : transformer une impression en spectateur
+      </h1>
+
+      <!-- OBJECTIF -->
+      <div class="callout-box callout-action">
+        <div class="callout-header">🎯 OBJECTIF PÉDAGOGIQUE</div>
+        <div class="callout-content">
+          À la fin de cette leçon, vous saurez utiliser les trois leviers de la psychologie du clic (curiosité, identification, promesse visuelle) pour transformer une impression en clic qualifié, puis un clic en spectateur satisfait — sans jamais tomber dans le clickbait trompeur.
+        </div>
+      </div>
+
+      <!-- CORPS DU COURS -->
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; margin: 36px 0;">
+        <p style="margin-bottom: 10px; font-style: italic; color: var(--text-secondary); border-left: 3px solid var(--accent-gold); padding-left: 16px;">
+          « Un clic n'est pas une fin. C'est le début d'une relation avec ton spectateur. »
+        </p>
+        <p style="margin: 20px 0;">
+          Sur YouTube, ton contenu peut être excellent et pourtant rester peu regardé. Pourquoi ? Parce qu'avant de regarder ta vidéo, le spectateur doit d'abord la remarquer, puis comprendre ce qu'elle lui apporte, puis décider : « Est-ce que ça vaut mon temps ? » C'est là qu'intervient la psychologie du clic — comprendre les éléments qui influencent la décision d'un spectateur face à un sujet, une miniature et un titre. L'objectif n'est pas de tromper : c'est de rendre la valeur de ta vidéo immédiatement compréhensible et suffisamment intéressante pour provoquer le clic.
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">1. Le parcours du clic</h3>
+        <p style="margin-bottom: 14px;">Le chemin complet, de la première impression à la valeur commerciale :</p>
+        <p style="margin: 0 0 20px; color: var(--text-secondary); text-align: center; line-height: 2.2;">
+          Impression → Attention → Compréhension → Curiosité/Intérêt → <strong style="color:#fff;">Clic</strong> → Visionnage → Satisfaction → Confiance → Retour sur la chaîne → Abonnement → Client potentiel
+        </p>
+        <p style="margin-bottom: 20px;">Une vue seule ne représente pas nécessairement une valeur commerciale. Une audience qui clique, regarde, fait confiance, revient et s'intéresse à ton expertise peut avoir beaucoup plus de valeur sur le long terme.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2. Le spectateur clique sur une promesse, pas sur une vidéo</h3>
+        <p style="margin-bottom: 14px;">Face à ton titre et ta miniature, le spectateur ne connaît pas encore ton contenu. Il juge seulement : « Qu'est-ce que je vais obtenir si je clique ? »</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Faible :</strong> « Conseils YouTube » — le spectateur ne sait pas précisément ce qu'il va apprendre.</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Mieux :</strong> « Pourquoi tes vidéos YouTube font peu de vues » — le problème est immédiatement identifiable.</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Encore mieux :</strong> « La raison pour laquelle tes vidéos restent invisibles » — le spectateur veut connaître cette raison.</p>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 À RETENIR</div>
+          <div class="callout-content">Plus la promesse est claire, plus le spectateur comprend rapidement pourquoi il devrait s'intéresser à ta vidéo.</div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">3. Les 3 piliers de la psychologie du clic</h3>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">1. La curiosité</strong> — montrer suffisamment pour donner envie d'en savoir plus, sans révéler toute la réponse.</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">2. L'identification</strong> — faire en sorte que le spectateur se reconnaisse dans le problème ou la situation.</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">3. La promesse visuelle</strong> — faire comprendre rapidement qu'un résultat, une transformation ou une information importante se trouve dans la vidéo. Ces trois leviers peuvent être utilisés séparément ou combinés.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">4. La curiosité — mais toujours honnête</h3>
+        <p style="margin-bottom: 14px;">La curiosité apparaît quand le spectateur possède une information incomplète : il comprend le sujet, mais il lui manque une pièce du puzzle. Exemple : « J'ai changé une seule chose sur ma chaîne YouTube… » — le spectateur se demande quoi, et la réponse n'est pas donnée immédiatement.</p>
+
+        <div class="callout-box callout-danger">
+          <div class="callout-header">⚠️ CURIOSITÉ HONNÊTE VS CLICKBAIT TROMPEUR</div>
+          <div class="callout-content">
+            <strong>Curiosité honnête</strong> : tu caches une information réellement présente dans la vidéo → clic → réponse → satisfaction.<br>
+            <strong>Clickbait trompeur</strong> : tu fais croire à une chose qui n'existe pas dans la vidéo → clic → déception → départ.<br><br>
+            Ton objectif n'est pas « obtenir le maximum de clics » mais « obtenir le maximum de <strong>clics qualifiés</strong> ».
+          </div>
+        </div>
+
+        <p style="margin: 20px 0;">Une bonne accroche peut donner une partie de l'information sans tout révéler (« J'ai trouvé pourquoi mes vidéos ne décollaient pas… »), mais ne la rends jamais si mystérieuse que le spectateur ne comprend même pas le sujet. <strong style="color:#fff;">Curiosité ≠ confusion</strong> : « Tu ne vas jamais croire ce qui s'est passé… » ne dit rien du sujet ; « Pourquoi tes vidéos restent bloquées à quelques vues » reste clair tout en intriguant.</p>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 À RETENIR</div>
+          <div class="callout-content">Le spectateur doit comprendre le sujet avant d'avoir envie de découvrir la réponse.</div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">5. Identification et frustration</h3>
+        <p style="margin-bottom: 14px;">Un spectateur clique plus facilement lorsqu'il se reconnaît dans le problème présenté. « Tu publies régulièrement mais personne ne regarde tes vidéos ? » ne parle pas à tout le monde — il parle directement à une personne qui vit cette situation exacte.</p>
+        <p style="margin-bottom: 8px;">Une frustration représente ce que ton audience veut résoudre : peu de vues, peu d'abonnés, vidéos ignorées, difficulté à trouver des clients, difficulté à comprendre YouTube, difficulté à créer régulièrement.</p>
+        <p style="margin-bottom: 20px;">Structure à retenir : <strong style="color:#fff;">Frustration → Promesse → Solution.</strong> Frustration : « Mes vidéos ne font presque aucune vue. » Promesse : « Voici ce qui bloque réellement ta chaîne. » Vidéo : explication + méthode + application.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">6. Peur de l'erreur et promesse de transformation</h3>
+        <p style="margin-bottom: 14px;">L'être humain veut naturellement éviter les erreurs coûteuses (« 5 erreurs qui empêchent ta chaîne de progresser »). Mais la menace présentée doit correspondre à un véritable problème traité dans la vidéo — jamais de peur artificielle.</p>
+        <p style="margin-bottom: 20px;">La mécanique <strong style="color:#fff;">avant → après</strong> fonctionne aussi très bien (« De chaîne invisible à chaîne qui attire ses premiers clients »), à condition que la transformation reste crédible. Ne promets jamais « 0 à 1 million d'abonnés en 30 jours » si ton contenu ne peut évidemment pas garantir cela.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">7. Chiffres, questions et contraste</h3>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Le chiffre</strong> rend une promesse plus concrète (« 7 erreurs qui bloquent ta chaîne »), mais il doit correspondre au contenu réel, jamais ajouté pour faire joli.</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">La question</strong> crée une recherche mentale : au lieu de « Tes vidéos ne font pas de vues », utilise « Pourquoi tes vidéos ne font-elles pas de vues ? »</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Le contraste</strong> attire l'attention en remettant en question une évidence : « Beaucoup publient. Peu construisent un business. » / « Plus de vidéos ≠ plus de clients. »</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">8. Le rôle de la miniature</h3>
+        <p style="margin-bottom: 14px;">La miniature doit arrêter le regard. Elle doit être immédiatement lisible, simple, adaptée au mobile, émotionnelle ou intrigante, construite autour d'un point focal clair. Elle n'a pas pour mission de raconter toute la vidéo — elle doit donner envie d'entrer dans l'histoire.</p>
+
+        <div class="callout-box callout-tip">
+          <div class="callout-header">💡 UNE MINIATURE = UNE IDÉE</div>
+          <div class="callout-content">
+            L'erreur fréquente est de vouloir mettre beaucoup de texte, plusieurs personnes, plusieurs objets, plusieurs couleurs, plusieurs messages — résultat, le cerveau ne sait plus où regarder. Une miniature doit avoir une idée principale, que le regard comprend en une fraction de seconde.
+          </div>
+        </div>
+
+        <p style="margin: 20px 0;">Le texte de la miniature doit compléter le titre, jamais le recopier. Titre : « Pourquoi tes vidéos ne font aucune vue ? » → Miniature : « VOICI POURQUOI ». Pense toujours <strong style="color:#fff;">titre + miniature = une seule promesse en deux parties</strong>, jamais deux éléments indépendants.</p>
+
+        <div class="callout-box callout-danger">
+          <div class="callout-header">⚠️ LA PROMESSE DOIT ÊTRE TENUE</div>
+          <div class="callout-content">
+            Titre et miniature peuvent provoquer un excellent CTR — mais si le contenu ne correspond pas à la promesse, le spectateur part rapidement. La miniature doit prolonger le titre et ne jamais promettre ce que la vidéo ne contient pas. Le vrai objectif : <strong>CTR élevé + bonne rétention</strong>, jamais CTR élevé + spectateurs déçus.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">9. Le gap cognitif et le temps du spectateur</h3>
+        <p style="margin-bottom: 14px;">La curiosité est un écart entre ce que le spectateur sait et ce qu'il veut savoir. « J'ai testé une stratégie pendant 30 jours » ouvre plusieurs questions dans son esprit (quelle stratégie, quel résultat ?) — ta vidéo doit ensuite fermer cet écart.</p>
+        <p style="margin-bottom: 20px;">Le spectateur ne dépense pas que de l'argent : il dépense aussi son temps. Avant de cliquer, il se demande inconsciemment : « Est-ce que cette vidéo mérite les prochaines minutes de ma vie ? » Une bonne promesse répond vite à ce qu'il va gagner : une information, une solution, une méthode, une découverte, une transformation, une inspiration, un divertissement.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">10. Clic et monétisation</h3>
+        <p style="margin-bottom: 14px;">Une chaîne rentable ne cherche pas uniquement des vues — elle construit un chemin entre l'attention et la valeur économique : Vidéo → Vue → Confiance → Abonnement → Audience fidèle → Visite du lien → Produit/service/formation/affiliation → Client.</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Vues ≠ argent.</strong> Une chaîne A avec 100 000 vues et une audience générale peut avoir moins de potentiel business qu'une chaîne B avec 10 000 vues mais une audience ciblée, un problème précis et une offre adaptée.</p>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 À RETENIR</div>
+          <div class="callout-content">Ne cherche pas seulement des spectateurs. Cherche les bons spectateurs — un clic qualifié vaut mieux que dix clics indifférents. Et rappelle-toi : chaque vidéo construit ou détruit ta réputation. Si tu délivres toujours ce que tu promets, clic → satisfaction → confiance ; si tu exagères, clic → déception → méfiance. À long terme, la confiance est l'actif qui permet de vendre une formation, un ebook, un coaching, un service.</div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">11. Les 7 familles de titres</h3>
+        <ul style="margin: 0 0 20px 22px; color: var(--text-secondary);">
+          <li><strong style="color:#fff;">Question</strong> — « Pourquoi tes vidéos ne font-elles pas de vues ? »</li>
+          <li><strong style="color:#fff;">Erreur</strong> — « 7 erreurs qui bloquent ta chaîne YouTube »</li>
+          <li><strong style="color:#fff;">Curiosité</strong> — « Personne ne te dit cette partie de YouTube… »</li>
+          <li><strong style="color:#fff;">Transformation</strong> — « Comment passer d'une chaîne invisible à une chaîne rentable »</li>
+          <li><strong style="color:#fff;">Chiffre</strong> — « 5 changements pour améliorer tes vidéos »</li>
+          <li><strong style="color:#fff;">Frustration</strong> — « Tu publies mais tes vidéos restent invisibles ? »</li>
+          <li><strong style="color:#fff;">Résultat / bénéfice</strong> — « Créer une chaîne YouTube professionnelle étape par étape »</li>
+        </ul>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">12. Quatre formules de titres à copier</h3>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Problème → Curiosité → Solution</strong> : « Pourquoi tes vidéos ne font pas de vues — et comment corriger ça »</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Promesse → Preuve → Curiosité</strong> : « J'ai analysé 100 chaînes YouTube : voici l'erreur que je vois partout »</p>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Erreur → Conséquence → Solution</strong> : « Cette erreur de miniature peut faire chuter tes clics — voici quoi faire »</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Avant → Après</strong> : « Ma chaîne avant et après avoir changé mes miniatures » — fonctionne particulièrement bien quand la transformation est réelle et démontrable.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">13. Le hook après le clic</h3>
+        <p style="margin-bottom: 20px;">Le travail du titre et de la miniature ne s'arrête pas au clic : ton introduction doit immédiatement confirmer « Oui, tu es au bon endroit » en reprenant la promesse. Titre : « Pourquoi tes vidéos ne font pas de vues » → Introduction : « Si tes vidéos obtiennent très peu de vues malgré tes efforts, dans cette vidéo je vais te montrer les trois problèmes qui peuvent expliquer cette situation et comment les identifier dans YouTube Studio. »</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">14. Le cycle complet du clic</h3>
+        <p style="margin: 0 0 20px; color: var(--text-secondary); text-align: center; line-height: 2.2;">
+          Sujet → Miniature → Titre → Clic → Hook → Contenu → Satisfaction → Confiance → Relation (abonnement) → Monétisation
+        </p>
+
+        <div class="callout-box callout-action">
+          <div class="callout-header">🚀 LE MODÈLE CLIC → CONFIANCE → CASH</div>
+          <div class="callout-content">
+            <strong>Clic</strong> : attirer l'attention. <strong>Confiance</strong> : délivrer réellement la promesse. <strong>Cash</strong> : transformer une partie de cette confiance en valeur économique avec une offre cohérente. Le troisième élément ne doit jamais arriver trop tôt — donne d'abord une vraie raison au spectateur de te faire confiance.
+          </div>
+        </div>
+
+        <!-- ERREURS QUI DÉTRUISENT LE CLIC -->
+        <div class="callout-box callout-danger">
+          <div class="callout-header">⚠️ LES ERREURS QUI DÉTRUISENT LE CLIC</div>
+          <div class="callout-content">
+            <strong>Erreur n°1 — Titre trop générique.</strong> Un titre vague ne donne au spectateur aucune raison précise de cliquer plutôt qu'une autre vidéo sur le même sujet.
+          </div>
+        </div>
+        <p style="margin: 4px 0 20px; font-size: 0.9rem; color: var(--text-muted); font-style: italic;">
+          Note : la liste des erreurs se poursuivait dans le document source au-delà de ce premier point — envoie la suite quand tu l'as sous la main et je complète cet encadré.
+        </p>
+      </div>
+
+      <!-- EXERCICE LINK -->
+      <div class="prompt-teaser-card" style="margin: 40px 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px;">Exercice Pratique Associé</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Choisis une de tes vidéos et réécris son titre + concept de miniature en appliquant un des 3 piliers (curiosité, identification, promesse visuelle).</p>
+        <a href="exercice.html" class="btn btn-secondary btn-sm">Ouvrir l'exercice →</a>
+      </div>
+
+      <!-- BOUTON TERMINÉ -->
+      <button class="lesson-complete-btn" id="btn-toggle-complete" onclick="CourseEngine.toggleLesson('mod-02-lec-01', this)">
+        <span>✓ Marquer la leçon comme terminée (+25 XP)</span>
+      </button>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/course.js"></script>
+</body>
+</html>

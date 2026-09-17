@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 05 : Stratégie de contenu — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Interface de cours de la formation YouTube Business 360° avec barre latérale, progression dynamique et encadrés pédagogiques Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Styles spécifiques à la page de formation (Sidebar + Contenu) */
+    .formation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - var(--header-height));
+      padding-top: var(--header-height);
+    }
+
+    .formation-sidebar {
+      background: var(--bg-surface-1);
+      border-right: 1px solid var(--border-subtle);
+      padding: 30px 20px;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .formation-main {
+      padding: 50px 60px;
+      max-width: 960px;
+    }
+
+    .module-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .module-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .module-nav-item.active {
+      background: var(--bg-surface-2);
+      border-color: var(--border-glow-red);
+      color: #FFFFFF;
+    }
+
+    .module-nav-status {
+      font-size: 0.82rem;
+    }
+
+    .progress-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--yt-red), var(--accent-gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-complete-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      background: var(--yt-red-subtle);
+      border: 1px solid rgba(255, 0, 51, 0.4);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      margin-top: 40px;
+    }
+
+    .lesson-complete-btn:hover {
+      background: var(--yt-red);
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+    }
+
+    .lesson-complete-btn.completed {
+      background: var(--accent-green-subtle);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .formation-layout {
+        grid-template-columns: 1fr;
+      }
+      .formation-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .formation-main {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Espace de Cours</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link active">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Mon Dashboard</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORMATION LAYOUT : SIDEBAR + CONTENU -->
+  <div class="formation-layout">
+    <!-- SIDEBAR -->
+    <aside class="formation-sidebar">
+      <div class="progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <span style="color: var(--text-muted);">PROGRESSION</span>
+          <span class="progress-value-text" style="color: var(--yt-red);">42 %</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">
+          Parcours des Modules
+        </div>
+        <a href="formation.html" class="module-nav-item">
+          <span>Module 01 : Trouver sa niche</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-02.html" class="module-nav-item">
+          <span>Module 02 : Psychologie du Clic</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-03.html" class="module-nav-item">
+          <span>Module 03 : Analyser la concurrence</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-04.html" class="module-nav-item">
+          <span>Module 04 : Créer sa chaîne pro</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-05.html" class="module-nav-item active">
+          <span>Module 05 : Stratégie de contenu</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-06.html" class="module-nav-item">
+          <span>Module 06 : Écrire un script</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-07.html" class="module-nav-item">
+          <span>Module 07 : Miniatures qui cliquent</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-08.html" class="module-nav-item">
+          <span>Module 08 : Tournage & montage</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-09.html" class="module-nav-item">
+          <span>Module 09 : SEO YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-10.html" class="module-nav-item">
+          <span>Module 10 : Calendrier & régularité</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-11.html" class="module-nav-item">
+          <span>Module 11 : Analytics</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-12.html" class="module-nav-item">
+          <span>Module 12 : Monétisation (9 modèles)</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-13.html" class="module-nav-item">
+          <span>Module 13 : YouTube depuis l'Afrique</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-14.html" class="module-nav-item">
+          <span>Module 14 : Cas pratiques approfondis</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-15.html" class="module-nav-item">
+          <span>Module 15 : Plan d'action 7/30/60/90j</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-16.html" class="module-nav-item">
+          <span>Module 16 : IA & YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-17.html" class="module-nav-item">
+          <span>Module 17 : Glossaire A-Z</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-18.html" class="module-nav-item">
+          <span>Module 18 : Boîte à outils bonus</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-19.html" class="module-nav-item">
+          <span>Module 19 : Construire son système</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-20.html" class="module-nav-item">
+          <span>Module 20 : Marque personnelle</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-21.html" class="module-nav-item">
+          <span>Module 21 : Communauté engagée</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-22.html" class="module-nav-item">
+          <span>Module 22 : Offre digitale rentable</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-23.html" class="module-nav-item">
+          <span>Module 23 : Tunnel de conversion</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-24.html" class="module-nav-item">
+          <span>Module 24 : Optimiser le business</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-25.html" class="module-nav-item">
+          <span>Module 25 : Vision long terme</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <a href="exercice.html" class="btn btn-secondary btn-sm" style="width: 100%;">Accéder aux exercices</a>
+      </div>
+    </aside>
+
+
+    <!-- CONTENU PÉDAGOGIQUE -->
+    <main class="formation-main">
+      <div class="badge badge-red" style="margin-bottom: 16px;">MODULE 05 • LEÇON 01</div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; margin-bottom: 20px;">
+        Stratégie de contenu : Idée → Titre → Hook
+      </h1>
+
+      <div class="callout-box callout-action">
+        <div class="callout-header">🎯 OBJECTIF PÉDAGOGIQUE</div>
+        <div class="callout-content">
+          À la fin de cette leçon, vous saurez construire un système complet — idée centrée sur l'audience, titre à 4 éléments, hook qui confirme la promesse — et relier votre contenu gratuit à un modèle business cohérent.
+        </div>
+      </div>
+
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; margin: 36px 0;">
+        <p style="margin-bottom: 20px;">
+          Beaucoup de créateurs pensent que leur problème est « je ne sais pas monter » ou « je n'ai pas une bonne caméra ». Mais très souvent, le problème commence avant même le tournage : l'idée, puis le titre, puis les premières secondes. Trois décisions essentielles : <strong style="color:#fff;">IDÉE → TITRE → HOOK.</strong>
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">1. D'où viennent les bonnes idées ?</h3>
+        <p style="margin-bottom: 8px;">Cinq sources : <strong style="color:#fff;">questions fréquentes</strong> (« Comment trouver sa niche ? »), <strong style="color:#fff;">frustrations</strong> (« Je publie mais personne ne regarde mes vidéos »), <strong style="color:#fff;">comparaisons</strong> (« Shorts ou vidéos longues ? »), <strong style="color:#fff;">erreurs</strong> (« 5 erreurs qui bloquent les débutants »), et <strong style="color:#fff;">actualités/tendances</strong> liées à ta niche.</p>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 PARTIR DE L'AUDIENCE, PAS DE SOI</div>
+          <div class="callout-content">
+            Créateur centré sur lui : « Aujourd'hui je vais vous raconter mon parcours. » Créateur centré sur l'audience : « Voici les 3 erreurs que j'aurais aimé connaître avant de créer ma chaîne. » Le deuxième transforme son expérience en solution pour le spectateur.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2. Construire une banque de 20 idées</h3>
+        <p style="margin-bottom: 14px;">Ne cherche pas une idée seulement le jour du tournage — prépare-en 20 d'un coup, réparties en 5 catégories : 4 questions, 4 frustrations, 4 erreurs, 4 comparaisons, 4 études de cas. Tu disposes alors de 20 possibilités sans attendre l'inspiration.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">3. Les 4 éléments d'un bon titre</h3>
+        <p style="margin-bottom: 8px;"><strong style="color:#fff;">Curiosité</strong> — donner envie de découvrir. <strong style="color:#fff;">Spécificité</strong> — dire précisément de quoi on parle (« Comment créer ta première chaîne YouTube de zéro » bat « Comment réussir sur YouTube »). <strong style="color:#fff;">Bénéfice</strong> — montrer ce que le spectateur va gagner. <strong style="color:#fff;">Crédibilité</strong> — donner une raison de croire que le contenu mérite son attention.</p>
+        <p style="margin-bottom: 20px;">Exemple d'évolution : « Quelques conseils pour YouTube » (faible) → « Pourquoi tes vidéos YouTube ne progressent pas » (mieux) → « Tes vidéos stagnent ? Voici ce qui bloque vraiment ta chaîne » (orienté problème).</p>
+
+        <div class="callout-box callout-danger">
+          <div class="callout-header">⚠️ CURIOSITÉ ≠ MENSONGE</div>
+          <div class="callout-content">
+            Un titre trompeur peut attirer un clic, mais si la vidéo ne correspond pas à la promesse, le spectateur part rapidement — le clickbait mensonger détruit la rétention et la confiance. Vise : ATTIRER → PROMETTRE → DÉLIVRER, jamais ATTIRER → TROMPER.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">4. Le hook : confirmer la promesse</h3>
+        <p style="margin-bottom: 14px;">Le spectateur vient de cliquer — tu dois lui montrer immédiatement qu'il a fait le bon choix. Évite les longues introductions (« Bonjour tout le monde, j'espère que vous allez bien... ») : entre directement dans la promesse.</p>
+        <p style="margin-bottom: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--border-subtle); border-radius: var(--radius-sm); font-style: italic; color: var(--text-secondary);">
+          Titre : « Pourquoi tes vidéos YouTube ne font aucune vue ? » → Hook : « Si tes vidéos ne font presque aucune vue, tu penses probablement que le problème vient de ton contenu. Mais avant de changer ton montage ou ta caméra, vérifie ces trois éléments. »
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">5. Le modèle complet : Idée → Titre → Hook</h3>
+        <p style="margin-bottom: 20px; color: var(--text-secondary); text-align: center; line-height: 2;">
+          Idée : « Les débutants choisissent mal leur niche » → Titre : « Tu choisis mal ta niche YouTube ? Voici comment le vérifier » → Hook : « Si tu choisis ta niche uniquement parce qu'elle semble rentable, tu risques de te retrouver bloqué après quelques vidéos. Dans cette vidéo, je vais te montrer les critères à vérifier avant de commencer. »
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">6. Le contenu qui vend un service</h3>
+        <p style="margin-bottom: 14px;">Si tu vends un service, ne fais pas uniquement des vidéos « Voici mon service » — le public cherche une solution à son problème, pas ton offre. (Voir le cas David, Module 02.)</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Mauvais angle :</strong> « Pourquoi choisir mon coaching ? » <strong style="color:#fff;">Meilleur angle :</strong> « Pourquoi tu n'obtiens pas les résultats que tu recherches malgré tes efforts ? » Tu aides d'abord, puis tu présentes ton offre quand elle devient pertinente.</p>
+
+        <div class="callout-box callout-tip">
+          <div class="callout-header">💡 LE MODÈLE BUSINESS</div>
+          <div class="callout-content">
+            Problème → Vidéo gratuite → Valeur → Confiance → Audience → Offre → Client. Le contenu gratuit ne sert pas seulement à obtenir des vues : il démontre ton expertise.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">7. Le contenu comme filtre à clients</h3>
+        <p style="margin-bottom: 20px;">Toutes les vues ne se valent pas. Une audience pertinente (intéressée par ton domaine exact) peut être plus intéressante commercialement qu'une audience énorme mais déconnectée de ton activité.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">8. Les 5 catégories de contenu à construire</h3>
+        <ul style="margin: 0 0 20px 22px; color: var(--text-secondary);">
+          <li><strong style="color:#fff;">Éduquer</strong> — apprendre quelque chose</li>
+          <li><strong style="color:#fff;">Résoudre</strong> — répondre à un problème</li>
+          <li><strong style="color:#fff;">Démontrer</strong> — montrer ton expertise</li>
+          <li><strong style="color:#fff;">Divertir</strong> — créer de l'attention et de la relation</li>
+          <li><strong style="color:#fff;">Convertir</strong> — orienter vers une ressource ou une offre pertinente</li>
+        </ul>
+        <p style="margin-bottom: 20px;">La majorité de ton contenu n'a pas besoin de vendre directement — il doit d'abord créer de la valeur.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">9. Les 3 questions avant chaque vidéo</h3>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">1.</strong> Qui va regarder ? <strong style="color:#fff;">2.</strong> Quel problème vais-je résoudre ? <strong style="color:#fff;">3.</strong> Pourquoi cette personne devrait-elle cliquer maintenant ? Si tu ne peux pas répondre clairement, retravaille ton idée.</p>
+
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; margin: 30px 0;">
+          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 16px;">✍️ EXERCICE — TON SYSTÈME COMPLET</div>
+          <p style="color: var(--text-secondary); margin-bottom: 6px;">Complète dans l'ordre : mon audience → son problème → son objectif → mon idée de vidéo → mon angle → mon titre → ma miniature → mon hook → la valeur que je vais apporter → mon CTA → mon offre éventuellement associée.</p>
+        </div>
+
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; margin: 30px 0;">
+          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 16px;">☑️ CHECKLIST DU MODULE 05</div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--text-secondary);">
+            <li>☐ J'ai au moins 20 idées.</li>
+            <li>☐ Mes idées viennent de problèmes réels.</li>
+            <li>☐ Mes titres sont précis et restent honnêtes.</li>
+            <li>☐ J'ai écrit le hook avant de filmer, il confirme la promesse.</li>
+            <li>☐ Je parle d'abord du problème de l'audience, pas de moi.</li>
+            <li>☐ Mon contenu correspond à mon positionnement et peut conduire vers mon business.</li>
+          </ul>
+        </div>
+
+        <!-- SYNTHÈSE DES MODULES 03 04 05 -->
+        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: #FFFFFF; margin: 44px 0 18px; text-align:center;">Synthèse des Modules 03, 04 et 05</h3>
+        <p style="margin: 0 0 24px; color: var(--text-secondary); text-align: center; line-height: 2;">
+          <strong style="color:#fff;">Module 03 — Concurrence</strong> : tu observes le marché, tu comprends ce qui existe déjà.<br>↓<br>
+          <strong style="color:#fff;">Module 04 — Chaîne</strong> : tu construis ta vitrine, tu montres qui tu es et ce que tu proposes.<br>↓<br>
+          <strong style="color:#fff;">Module 05 — Contenu</strong> : tu construis ton système de vidéos, tu réponds aux problèmes de ton audience.<br>↓<br>
+          <strong style="color:#fff;">Résultat</strong> : une chaîne qui n'est pas construite au hasard — un marché → une audience → un positionnement → une identité → des contenus → une stratégie.
+        </p>
+
+        <div class="callout-box callout-action">
+          <div class="callout-header">🚀 LA GRANDE FORMULE À RETENIR</div>
+          <div class="callout-content">
+            Analyser (comprendre le marché) → Se positionner (trouver son espace) → Présenter (créer une chaîne professionnelle) → Créer (produire des idées utiles) → Attirer (titres et miniatures) → Retenir (un bon hook) → Apporter de la valeur (résoudre le problème) → Construire la confiance (devenir une référence) → Monétiser (proposer une solution cohérente).
+          </div>
+        </div>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 PHILOSOPHIE YOUTUBE BUSINESS 360°</div>
+          <div class="callout-content">
+            Ne crée pas simplement une chaîne — construis un système. Ne cherche pas simplement des vues — cherche une audience pertinente. Ne copie pas tes concurrents — étudie-les. Ne parle pas seulement de toi — parle des problèmes de ton audience. Ne cherche pas seulement un clic — donne une vraie raison de cliquer. Ne cherche pas seulement à vendre — commence par créer de la valeur.<br><br>
+            <strong>Une chaîne rentable n'est pas construite avec une seule bonne vidéo. Elle est construite avec une cohérence entre le marché, l'audience, le positionnement, le contenu et le business.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-teaser-card" style="margin: 40px 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px;">Exercice Pratique Associé</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Construis tes 20 idées de vidéos et ton système Idée → Titre → Hook complet, puis débloque le corrigé de Gaston N3.</p>
+        <a href="exercice.html" class="btn btn-secondary btn-sm">Ouvrir l'exercice →</a>
+      </div>
+
+      <button class="lesson-complete-btn" id="btn-toggle-complete" onclick="CourseEngine.toggleLesson('mod-05-lec-01', this)">
+        <span>✓ Marquer la leçon comme terminée (+25 XP)</span>
+      </button>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/course.js"></script>
+</body>
+</html>

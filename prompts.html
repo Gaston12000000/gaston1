@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Library — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Bibliothèque complète de plus de 150 prompts d'ingénierie YouTube : niches, titres, hooks, scripts, neuro-miniatures et analytics.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">AI Prompt Library</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link active">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="formation.html" class="btn btn-primary btn-sm">Reprendre le cours</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: calc(var(--header-height) + 40px);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">150+ PROMPTS TESTÉS & CALIBRÉS</div>
+        <h1 class="section-title">La Boîte à Outils <span class="highlight-red">IA Générative</span></h1>
+        <p class="section-desc">Copiez en 1 clic nos prompts optimisés pour ChatGPT, Claude et Gemini afin de décupler votre cadence de production sans sacrifier la qualité.</p>
+      </div>
+
+      <!-- RECHERCHE & FILTRES -->
+      <div style="display: flex; gap: 20px; max-width: 800px; margin: 0 auto 50px auto; flex-wrap: wrap;" class="reveal">
+        <input type="text" id="prompt-search-input" class="form-input" style="flex: 2; min-width: 260px;" placeholder="🔍 Rechercher un prompt par mot-clé (ex: hook, miniature, script)...">
+        <select id="prompt-category-select" class="form-input" style="flex: 1; min-width: 180px; background: var(--bg-surface-2);">
+          <option value="all">Toutes les catégories</option>
+          <option value="Niche">Niche & Audience</option>
+          <option value="Titres">Titres magnétiques</option>
+          <option value="Hooks">Hooks & Intros</option>
+          <option value="Storytelling">Storytelling & Scripts</option>
+          <option value="SEO">SEO & Descriptions</option>
+          <option value="Monétisation">Monétisation & Offres</option>
+        </select>
+      </div>
+
+      <!-- LISTE DES PROMPTS -->
+      <div id="prompts-list-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px;">
+        <!-- Généré dynamiquement par prompts.js -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 YouTube Business 360° — Gaston N3. Tous droits réservés.</div>
+      <div>CAS FICTIF / SIMULATION PÉDAGOGIQUE</div>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/prompts-data.js"></script>
+  <script src="../js/prompts.js"></script>
+</body>
+</html>

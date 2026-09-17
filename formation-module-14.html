@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 14 : Cas pratiques approfondis — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Interface de cours de la formation YouTube Business 360° avec barre latérale, progression dynamique et encadrés pédagogiques Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Styles spécifiques à la page de formation (Sidebar + Contenu) */
+    .formation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - var(--header-height));
+      padding-top: var(--header-height);
+    }
+
+    .formation-sidebar {
+      background: var(--bg-surface-1);
+      border-right: 1px solid var(--border-subtle);
+      padding: 30px 20px;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .formation-main {
+      padding: 50px 60px;
+      max-width: 960px;
+    }
+
+    .module-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .module-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .module-nav-item.active {
+      background: var(--bg-surface-2);
+      border-color: var(--border-glow-red);
+      color: #FFFFFF;
+    }
+
+    .module-nav-status {
+      font-size: 0.82rem;
+    }
+
+    .progress-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--yt-red), var(--accent-gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-complete-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      background: var(--yt-red-subtle);
+      border: 1px solid rgba(255, 0, 51, 0.4);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      margin-top: 40px;
+    }
+
+    .lesson-complete-btn:hover {
+      background: var(--yt-red);
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+    }
+
+    .lesson-complete-btn.completed {
+      background: var(--accent-green-subtle);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .formation-layout {
+        grid-template-columns: 1fr;
+      }
+      .formation-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .formation-main {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Espace de Cours</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link active">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Mon Dashboard</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORMATION LAYOUT : SIDEBAR + CONTENU -->
+  <div class="formation-layout">
+    <!-- SIDEBAR -->
+    <aside class="formation-sidebar">
+      <div class="progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <span style="color: var(--text-muted);">PROGRESSION</span>
+          <span class="progress-value-text" style="color: var(--yt-red);">42 %</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">
+          Parcours des Modules
+        </div>
+        <a href="formation.html" class="module-nav-item">
+          <span>Module 01 : Trouver sa niche</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-02.html" class="module-nav-item">
+          <span>Module 02 : Psychologie du Clic</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-03.html" class="module-nav-item">
+          <span>Module 03 : Analyser la concurrence</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-04.html" class="module-nav-item">
+          <span>Module 04 : Créer sa chaîne pro</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-05.html" class="module-nav-item">
+          <span>Module 05 : Stratégie de contenu</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-06.html" class="module-nav-item">
+          <span>Module 06 : Écrire un script</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-07.html" class="module-nav-item">
+          <span>Module 07 : Miniatures qui cliquent</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-08.html" class="module-nav-item">
+          <span>Module 08 : Tournage & montage</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-09.html" class="module-nav-item">
+          <span>Module 09 : SEO YouTube</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-10.html" class="module-nav-item">
+          <span>Module 10 : Calendrier & régularité</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-11.html" class="module-nav-item">
+          <span>Module 11 : Analytics</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-12.html" class="module-nav-item">
+          <span>Module 12 : Monétisation (9 modèles)</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-13.html" class="module-nav-item">
+          <span>Module 13 : YouTube depuis l'Afrique</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-14.html" class="module-nav-item active">
+          <span>Module 14 : Cas pratiques approfondis</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-15.html" class="module-nav-item">
+          <span>Module 15 : Plan d'action 7/30/60/90j</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-16.html" class="module-nav-item">
+          <span>Module 16 : IA & YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-17.html" class="module-nav-item">
+          <span>Module 17 : Glossaire A-Z</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-18.html" class="module-nav-item">
+          <span>Module 18 : Boîte à outils bonus</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-19.html" class="module-nav-item">
+          <span>Module 19 : Construire son système</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-20.html" class="module-nav-item">
+          <span>Module 20 : Marque personnelle</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-21.html" class="module-nav-item">
+          <span>Module 21 : Communauté engagée</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-22.html" class="module-nav-item">
+          <span>Module 22 : Offre digitale rentable</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-23.html" class="module-nav-item">
+          <span>Module 23 : Tunnel de conversion</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-24.html" class="module-nav-item">
+          <span>Module 24 : Optimiser le business</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-25.html" class="module-nav-item">
+          <span>Module 25 : Vision long terme</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <a href="exercice.html" class="btn btn-secondary btn-sm" style="width: 100%;">Accéder aux exercices</a>
+      </div>
+    </aside>
+
+
+
+
+    <!-- CONTENU PÉDAGOGIQUE -->
+    <main class="formation-main">
+      <div class="badge badge-red" style="margin-bottom: 16px;">MODULE 14 • LEÇON 01</div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; margin-bottom: 20px;">
+        Cas pratiques approfondis : apprendre à diagnostiquer
+      </h1>
+
+      <div class="callout-box callout-action">
+        <div class="callout-header">🎯 OBJECTIF PÉDAGOGIQUE</div>
+        <div class="callout-content">
+          À la fin de cette leçon, vous saurez appliquer la méthode Situation → Problème → Diagnostic → Cause → Solution → Test → Résultat à votre propre chaîne, en vous appuyant sur 10 situations types.
+        </div>
+      </div>
+
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; margin: 36px 0;">
+        <p style="margin-bottom: 8px;">Connaître la théorie est important. Savoir analyser une situation l'est encore plus. Voici la méthode utilisée dans les 10 cas ci-dessous :</p>
+        <p style="margin: 0 0 30px; color: var(--text-secondary); text-align: center; line-height: 2;">
+          Situation → Problème → Diagnostic → Cause possible → Solution → Test → Résultat
+        </p>
+
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Kevin — le problème du titre</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Contenu développement personnel, peu de résultats.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Kevin pense « mon contenu est mauvais » sans avoir analysé.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Regarder impressions, CTR, rétention avant de conclure ; impressions bonnes + CTR faible = regarder titre et miniature en priorité.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Ne change pas tout le contenu avant d'avoir identifié le vrai problème.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Sarah — une niche trop large</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Veut créer du contenu beauté.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Niche extrêmement large (maquillage, soins, cheveux, produits, mode, conseils) : le public ne comprend pas ce que propose la chaîne.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Trouver une sous-niche plus précise.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : La précision facilite le positionnement.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Patrick — peur de la concurrence</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Veut parler d'entrepreneuriat, voit les grandes chaînes.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Confond concurrence et impossibilité de réussir.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Analyser sujets, angles, audiences, besoins non traités, puis trouver une différence.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : La vraie question n'est pas « y a-t-il des concurrents ? » mais « quelle place puis-je occuper ? »</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Amina — une chaîne mal présentée</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Bonne expertise, mais chaîne difficile à comprendre.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> On ne sait pas qui elle aide, ce qu'elle enseigne, pourquoi la suivre.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Clarifier positionnement, nom, description, thèmes, titres, miniatures.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Avoir de bonnes connaissances ne suffit pas — il faut aussi savoir les présenter.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — David — vendre trop tôt</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Propose du coaching.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Presque toutes ses vidéos parlent de son offre plutôt que du problème de l'audience.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Créer du contenu autour des vrais problèmes de ses futurs clients, présenter l'offre quand c'est pertinent.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Donne d'abord une raison de te faire confiance.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Créateur sans visage</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Ne souhaite pas montrer son visage.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Pense que c'est impossible de réussir ainsi.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Construire l'expérience sur la narration, la voix, les images, le montage, le rythme.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Une contrainte de production n'est pas forcément une impossibilité.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Créateur africain</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Veut toucher tous les francophones.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Le contenu devient trop général.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Exploiter d'abord son contexte et son avantage local.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Pas besoin d'abandonner son identité locale pour toucher plus de monde.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — E-commerçant</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Présente uniquement ses produits.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Les vidéos ressemblent à des publicités.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Partir du problème → contenu → solution → produit → CTA.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Le contenu doit donner une raison de regarder avant de donner une raison d'acheter.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Voyage à petit budget</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> « Je n'ai pas assez d'argent pour créer du contenu voyage. »</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> La contrainte budget semble bloquante.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Transformer la contrainte en positionnement : « voyager avec un petit budget ».</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Une contrainte peut parfois devenir une niche.</p>
+        </div>
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 14px;">
+          <div style="font-family: var(--font-heading); font-weight: 800; color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">CAS — Échec et rebond</div>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Situation :</strong> Publie énormément, sans niche ni positionnement clairs.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Problème :</strong> Titres improvisés, aucune analyse — finit par abandonner.</p>
+          <p style="margin: 0 0 6px; color: #E2E8F0;"><strong style="color:#fff;">Solution :</strong> Revenir aux fondamentaux : niche, audience, positionnement, contenu, présentation, analyse, amélioration.</p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; font-style: italic;">Leçon : Travailler beaucoup ne suffit pas — il faut travailler avec une méthode.</p>
+        </div>
+        <p style="margin: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Tous les cas ci-dessus sont fictifs / simulations pédagogiques.</p>
+
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; margin: 30px 0;">
+          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 16px;">✍️ LA MÉTHODE POUR ANALYSER TON PROPRE CAS</div>
+          <p style="color: var(--text-secondary);">1. Quelle est ma situation ? · 2. Quel est le symptôme ? · 3. Quelle peut être la cause ? · 4. Quel levier dois-je travailler ? · 5. Quel test vais-je réaliser ? · 6. Quel résultat vais-je observer ?</p>
+        </div>
+      </div>
+
+      <div class="prompt-teaser-card" style="margin: 40px 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px;">Exercice Pratique Associé</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Applique la méthode en 6 questions à ta propre situation actuelle et débloque le corrigé de Gaston N3.</p>
+        <a href="exercice.html" class="btn btn-secondary btn-sm">Ouvrir l'exercice →</a>
+      </div>
+
+      <button class="lesson-complete-btn" id="btn-toggle-complete" onclick="CourseEngine.toggleLesson('mod-14-lec-01', this)">
+        <span>✓ Marquer la leçon comme terminée (+25 XP)</span>
+      </button>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/course.js"></script>
+</body>
+</html>

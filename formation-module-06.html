@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 06 : Écrire un script — YouTube Business 360° | Gaston N3</title>
+  <meta name="description" content="Interface de cours de la formation YouTube Business 360° avec barre latérale, progression dynamique et encadrés pédagogiques Gaston N3.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Styles spécifiques à la page de formation (Sidebar + Contenu) */
+    .formation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - var(--header-height));
+      padding-top: var(--header-height);
+    }
+
+    .formation-sidebar {
+      background: var(--bg-surface-1);
+      border-right: 1px solid var(--border-subtle);
+      padding: 30px 20px;
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .formation-main {
+      padding: 50px 60px;
+      max-width: 960px;
+    }
+
+    .module-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .module-nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #FFFFFF;
+    }
+
+    .module-nav-item.active {
+      background: var(--bg-surface-2);
+      border-color: var(--border-glow-red);
+      color: #FFFFFF;
+    }
+
+    .module-nav-status {
+      font-size: 0.82rem;
+    }
+
+    .progress-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--yt-red), var(--accent-gold));
+      border-radius: var(--radius-pill);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lesson-complete-btn {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--radius-md);
+      background: var(--yt-red-subtle);
+      border: 1px solid rgba(255, 0, 51, 0.4);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      margin-top: 40px;
+    }
+
+    .lesson-complete-btn:hover {
+      background: var(--yt-red);
+      box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+    }
+
+    .lesson-complete-btn.completed {
+      background: var(--accent-green-subtle);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .formation-layout {
+        grid-template-columns: 1fr;
+      }
+      .formation-sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .formation-main {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">YOUTUBE BUSINESS <span>360°</span></span>
+          <span class="brand-author">Espace de Cours</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="formation.html" class="nav-link active">Formation</a>
+        <a href="modules.html" class="nav-link">Programme</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="prompts.html" class="nav-link">Prompts IA</a>
+        <a href="bonus.html" class="nav-link">Bonus</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-xp-badge">
+          <span id="nav-level-name">🌱 Débutant</span>
+          <span id="nav-xp-val">150 XP</span>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Mon Dashboard</a>
+        <button class="hamburger-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORMATION LAYOUT : SIDEBAR + CONTENU -->
+  <div class="formation-layout">
+    <!-- SIDEBAR -->
+    <aside class="formation-sidebar">
+      <div class="progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <span style="color: var(--text-muted);">PROGRESSION</span>
+          <span class="progress-value-text" style="color: var(--yt-red);">42 %</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">
+          Parcours des Modules
+        </div>
+        <a href="formation.html" class="module-nav-item">
+          <span>Module 01 : Trouver sa niche</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-02.html" class="module-nav-item">
+          <span>Module 02 : Psychologie du Clic</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-03.html" class="module-nav-item">
+          <span>Module 03 : Analyser la concurrence</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-04.html" class="module-nav-item">
+          <span>Module 04 : Créer sa chaîne pro</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-05.html" class="module-nav-item">
+          <span>Module 05 : Stratégie de contenu</span>
+          <span class="module-nav-status" style="color: var(--accent-green);">✓</span>
+        </a>
+        <a href="formation-module-06.html" class="module-nav-item active">
+          <span>Module 06 : Écrire un script</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-07.html" class="module-nav-item">
+          <span>Module 07 : Miniatures qui cliquent</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-08.html" class="module-nav-item">
+          <span>Module 08 : Tournage & montage</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-09.html" class="module-nav-item">
+          <span>Module 09 : SEO YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-10.html" class="module-nav-item">
+          <span>Module 10 : Calendrier & régularité</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-11.html" class="module-nav-item">
+          <span>Module 11 : Analytics</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-12.html" class="module-nav-item">
+          <span>Module 12 : Monétisation (9 modèles)</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-13.html" class="module-nav-item">
+          <span>Module 13 : YouTube depuis l'Afrique</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-14.html" class="module-nav-item">
+          <span>Module 14 : Cas pratiques approfondis</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-15.html" class="module-nav-item">
+          <span>Module 15 : Plan d'action 7/30/60/90j</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-16.html" class="module-nav-item">
+          <span>Module 16 : IA & YouTube</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-17.html" class="module-nav-item">
+          <span>Module 17 : Glossaire A-Z</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-18.html" class="module-nav-item">
+          <span>Module 18 : Boîte à outils bonus</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-19.html" class="module-nav-item">
+          <span>Module 19 : Construire son système</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-20.html" class="module-nav-item">
+          <span>Module 20 : Marque personnelle</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-21.html" class="module-nav-item">
+          <span>Module 21 : Communauté engagée</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-22.html" class="module-nav-item">
+          <span>Module 22 : Offre digitale rentable</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-23.html" class="module-nav-item">
+          <span>Module 23 : Tunnel de conversion</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-24.html" class="module-nav-item">
+          <span>Module 24 : Optimiser le business</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+        <a href="formation-module-25.html" class="module-nav-item">
+          <span>Module 25 : Vision long terme</span>
+          <span class="module-nav-status" style="color: var(--text-muted);">○</span>
+        </a>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <a href="exercice.html" class="btn btn-secondary btn-sm" style="width: 100%;">Accéder aux exercices</a>
+      </div>
+    </aside>
+
+
+
+    <!-- CONTENU PÉDAGOGIQUE -->
+    <main class="formation-main">
+      <div class="badge badge-red" style="margin-bottom: 16px;">MODULE 06 • LEÇON 01</div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; margin-bottom: 20px;">
+        Écrire un script qui capte : la structure en 9 blocs
+      </h1>
+
+      <div class="callout-box callout-action">
+        <div class="callout-header">🎯 OBJECTIF PÉDAGOGIQUE</div>
+        <div class="callout-content">
+          À la fin de cette leçon, vous saurez structurer un script complet en 9 blocs (hook, promesse, introduction, développement, exemple, pattern interrupt, transition, conclusion, CTA) où chaque bloc pousse le spectateur vers le suivant.
+        </div>
+      </div>
+
+      <div style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; margin: 36px 0;">
+        <p style="margin-bottom: 20px;">
+          Une vidéo YouTube ne doit pas seulement être intéressante — elle doit être organisée. Tu peux très bien connaître ton sujet, mais si tes idées arrivent dans le désordre ou que ton introduction traîne, le spectateur part. Un script n'est pas un texte littéraire : c'est un outil de rétention, et chaque bloc doit pousser vers le bloc suivant.
+        </p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">1. Pourquoi un script (même sans le lire mot à mot) ?</h3>
+        <p style="margin-bottom: 20px;">Sans structure : répétitions, informations oubliées, digressions, introduction trop longue, CTA qui arrive sans logique. Le script répond en continu à une seule question : « Quelle information dois-je donner maintenant pour que la personne ait envie de continuer ? » Écris comme tu parlerais à une personne, pas comme dans un livre.</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">2. Les 9 blocs, un par un</h3>
+
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">1. Hook</strong> — empêcher le spectateur de partir. Faible : « Bonjour à tous, bienvenue sur ma chaîne... » Meilleur : « Si tes vidéos restent bloquées à quelques vues, le problème n'est peut-être pas celui que tu imagines. »</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">2. Promesse</strong> — dire ce que la personne va obtenir. « Dans cette vidéo, je vais te montrer les 3 éléments à vérifier avant de publier ta prochaine vidéo. »</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">3. Introduction</strong> — donner le contexte sans devenir une deuxième vidéo. Réponds à « pourquoi cette vidéo est importante ? », puis avance vite.</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">4. Développement</strong> — le cœur de la vidéo, découpé en étapes courtes, une idée à la fois (jamais 7 critères lancés d'un coup).</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">5. Exemple</strong> — transforme l'abstrait en concret : « choisir une niche précise » devient « cibler les débutants qui veulent s'entraîner à domicile ».</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">6. Pattern interrupt</strong> — rupture de rythme au milieu de la vidéo (question, anecdote, objection) : « Mais attends une seconde : et si ton problème n'était pas ton contenu ? »</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">7. Transition</strong> — relie logiquement deux idées plutôt que de sauter brutalement de sujet.</p>
+        <p style="margin-bottom: 6px;"><strong style="color:#fff;">8. Conclusion</strong> — une idée mémorable, pas un résumé complet de la vidéo.</p>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">9. CTA</strong> — une seule action précise, jamais une liste (« like, abonne-toi, partage, active la cloche, commente, achète... »).</p>
+
+        <div class="callout-box callout-tip">
+          <div class="callout-header">💡 UNE IDÉE À LA FOIS</div>
+          <div class="callout-content">
+            Expliquer demande, concurrence, monétisation, expertise, production ET international en une seule phrase surcharge le cerveau du spectateur. Découpe : Point 1 → explication → exemple → Point 2 → explication → exemple. C'est ce qui rend un contenu facile à suivre.
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">3. Transition : l'exemple qui change tout</h3>
+        <p style="margin-bottom: 20px;"><strong style="color:#fff;">Mauvais :</strong> « Voilà pour la niche. Maintenant parlons des miniatures. » <strong style="color:#fff;">Meilleur :</strong> « Maintenant que tu sais à qui tu veux parler, il faut réussir à présenter ton contenu de manière suffisamment claire pour donner envie de cliquer. C'est là que la miniature entre en jeu. »</p>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #FFFFFF; margin: 36px 0 14px;">4. Script pour une chaîne sans visage</h3>
+        <p style="margin-bottom: 20px;">L'absence de visage demande de compenser davantage : voix, rythme, images, changements visuels, textes à l'écran, B-roll (voir Module 08).</p>
+
+        <div class="callout-box callout-remember">
+          <div class="callout-header">🧠 LA RÈGLE DES 9 BLOCS</div>
+          <div class="callout-content">Avant de publier ton script, demande : « Est-ce que chaque bloc possède une fonction ? » Si tu ne sais pas pourquoi un passage existe, supprime-le ou reformule-le.</div>
+        </div>
+
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; margin: 30px 0;">
+          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 16px;">✍️ EXERCICE</div>
+          <p style="color: var(--text-secondary);">Choisis une vidéo et rédige, dans l'ordre : Hook → Promesse → Introduction → Point 1 + exemple → Point 2 + exemple → Pattern interrupt → Transition → Conclusion → CTA.</p>
+        </div>
+      </div>
+
+      <div class="prompt-teaser-card" style="margin: 40px 0;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 8px;">Exercice Pratique Associé</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Rédige ton script complet en 9 blocs et débloque le corrigé de Gaston N3.</p>
+        <a href="exercice.html" class="btn btn-secondary btn-sm">Ouvrir l'exercice →</a>
+      </div>
+
+      <button class="lesson-complete-btn" id="btn-toggle-complete" onclick="CourseEngine.toggleLesson('mod-06-lec-01', this)">
+        <span>✓ Marquer la leçon comme terminée (+25 XP)</span>
+      </button>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/course.js"></script>
+</body>
+</html>
